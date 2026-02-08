@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Bài 3 - Game đoán số</title>
+</head>
+<body>
+
+<h2>Game đoán số (1–100)</h2>
+
+<input id="guess" type="number" placeholder="Nhập số">
+<button onclick="check()">Đoán</button>
+
+<p id="result"></p>
+
+<script>
+const randomNumber = Math.floor(Math.random() * 100) + 1;
+let attempts = 0;
+
+function check() {
+  const guess = Number(document.getElementById("guess").value);
+  attempts++;
+
+  if (guess > randomNumber) {
+    result.innerText = "Số bạn nhập quá cao";
+  } else if (guess < randomNumber) {
+    result.innerText = "Số bạn nhập quá thấp";
+  } else {
+    result.innerText = `Chính xác! Bạn đoán đúng sau ${attempts} lần`;
+  }
+}
+</script>
+
+<br><a href="index.html">← Về trang chủ</a>
+</body>
+</html>

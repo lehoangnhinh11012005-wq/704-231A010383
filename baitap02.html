@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Bài 2 - Todo List</title>
+</head>
+<body>
+
+<h2>Danh sách công việc</h2>
+
+<input id="task" placeholder="Nhập công việc">
+<button onclick="addTask()">Thêm</button>
+
+<ul id="list"></ul>
+
+<script>
+let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+function render() {
+  const list = document.getElementById("list");
+  list.innerHTML = "";
+  tasks.forEach((task, index) => {
+    list.innerHTML += `
+      <li>
+        ${task}
+        <button onclick="removeTask(${index})">X</button>
+      </li>`;
+  });
+}
+
+function addTask() {
+  const task = document.getElementById("task").value;
+  if (task === "") return;
+  tasks.push(task);
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+  document.getElementById("task").value = "";
+  render();
+}
+
+function removeTask(index) {
+  tasks.splice(index, 1);
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+  render();
+}
+
+render();
+</script>
+
+<br><a href="index.html">← Về trang chủ</a>
+</body>
+</html>
